@@ -97,8 +97,8 @@
   console.log("• PixelGridDrawer.connectServer('ws://localhost:8765')");
   console.log("• PixelGridDrawer.pickOrigin()");
 
-  // === Thêm nút chạy tự động ===
-  (function () {
+// === Thêm nút chạy tự động ===
+window.addEventListener("load", () => {
     const btn = document.createElement("button");
     btn.textContent = "🎨 Start PixelGridDrawer";
     btn.style.position = "fixed";
@@ -115,15 +115,19 @@
     btn.style.fontSize = "14px";
 
     btn.onclick = () => {
-      if (!window.PixelGridDrawer) {
-        console.error("❌ PixelGridDrawer chưa sẵn sàng!");
-        return;
-      }
-      PixelGridDrawer.init(94, 97);
-      PixelGridDrawer.connectServer("ws://localhost:8765");
-      PixelGridDrawer.pickOrigin();
-      console.log("🚀 PixelGridDrawer started!");
+        if (!window.PixelGridDrawer) {
+            console.error("❌ PixelGridDrawer chưa sẵn sàng!");
+            return;
+        }
+        PixelGridDrawer.init(94, 97);
+        PixelGridDrawer.connectServer("ws://localhost:8765");
+        PixelGridDrawer.pickOrigin();
+        console.log("🚀 PixelGridDrawer started!");
     };
+
+    document.body.appendChild(btn);
+});
+
 
     document.body.appendChild(btn);
   })();
