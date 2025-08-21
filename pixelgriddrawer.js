@@ -1,3 +1,12 @@
+// ==UserScript==
+// @name         PixelGridDrawer (with button)
+// @namespace    http://tampermonkey.net/
+// @version      1.2
+// @description  Chọn vị trí, gửi lên server, nhận pixel list về vẽ
+// @match        *://*/*
+// @grant        none
+// ==/UserScript==
+
 (function () {
   'use strict';
 
@@ -96,4 +105,36 @@
   console.log("• PixelGridDrawer.init(cols, rows)");
   console.log("• PixelGridDrawer.connectServer('ws://localhost:8765')");
   console.log("• PixelGridDrawer.pickOrigin()");
+
+  // === Thêm nút chạy tự động ===
+  (function () {
+    const btn = document.createElement("button");
+    btn.textContent = "🎨 Start PixelGridDrawer";
+    btn.style.position = "fixed";
+    btn.style.top = "10px";
+    btn.style.right = "10px";
+    btn.style.zIndex = 9999;
+    btn.style.padding = "8px 12px";
+    btn.style.background = "#ff5722";
+    btn.style.color = "white";
+    btn.style.border = "none";
+    btn.style.borderRadius = "6px";
+    btn.style.cursor = "pointer";
+    btn.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
+    btn.style.fontSize = "14px";
+
+    btn.onclick = () => {
+      if (!window.PixelGridDrawer) {
+        console.error("❌ PixelGridDrawer chưa sẵn sàng!");
+        return;
+      }
+      PixelGridDrawer.init(94, 97);
+      PixelGridDrawer.connectServer("ws://localhost:8765");
+      PixelGridDrawer.pickOrigin();
+      console.log("🚀 PixelGridDrawer started!");
+    };
+
+    document.body.appendChild(btn);
+  })();
+
 })();
