@@ -1,12 +1,3 @@
-// ==UserScript==
-// @name         PixelGridDrawer (with button)
-// @namespace    http://tampermonkey.net/
-// @version      1.2
-// @description  Chọn vị trí, gửi lên server, nhận pixel list về vẽ
-// @match        *://*/*
-// @grant        none
-// ==/UserScript==
-
 (function () {
   'use strict';
 
